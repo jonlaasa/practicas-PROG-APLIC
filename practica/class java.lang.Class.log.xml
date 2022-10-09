@@ -2,27 +2,50 @@
 <!DOCTYPE log SYSTEM "logger.dtd">
 <log>
 <record>
-  <date>2022-10-06T18:35:46.582188100Z</date>
-  <millis>1665081346582</millis>
-  <nanos>188100</nanos>
+  <date>2022-10-09T15:06:59.747250100Z</date>
+  <millis>1665328019747</millis>
+  <nanos>250100</nanos>
   <sequence>0</sequence>
   <logger>ud.prog3.pr01.ListaDeReproduccion</logger>
   <level>INFO</level>
   <class>ud.prog3.pr01.ListaDeReproduccion</class>
   <method>add</method>
-  <thread>1</thread>
+  <thread>21</thread>
   <message>Añadiendo ficheros con filtro *Pentatonix*.mp4</message>
 </record>
 <record>
-  <date>2022-10-06T18:35:46.649148900Z</date>
-  <millis>1665081346649</millis>
-  <nanos>148900</nanos>
+  <date>2022-10-09T15:06:59.783229100Z</date>
+  <millis>1665328019783</millis>
+  <nanos>229100</nanos>
   <sequence>1</sequence>
   <logger>ud.prog3.pr01.ListaDeReproduccion</logger>
   <level>INFO</level>
   <class>ud.prog3.pr01.ListaDeReproduccion</class>
   <method>add</method>
-  <thread>1</thread>
+  <thread>21</thread>
   <message>Filtro despues de cambios.*Pentatonix.*\.mp4</message>
 </record>
-</log>
+<record>
+  <date>2022-10-09T15:06:59.787228900Z</date>
+  <millis>1665328019787</millis>
+  <nanos>228900</nanos>
+  <sequence>2</sequence>
+  <logger>ud.prog3.pr01.ListaDeReproduccion</logger>
+  <level>SEVERE</level>
+  <class>ud.prog3.pr01.ListaDeReproduccion</class>
+  <method>add</method>
+  <thread>21</thread>
+  <message>Error al intentar convertir patron sobre Fichero Pentatonix no video.txt</message>
+</record>
+<record>
+  <date>2022-10-09T15:06:59.789225900Z</date>
+  <millis>1665328019789</millis>
+  <nanos>225900</nanos>
+  <sequence>3</sequence>
+  <logger>ud.prog3.pr01.ListaDeReproduccion</logger>
+  <level>SEVERE</level>
+  <class>ud.prog3.pr01.ListaDeReproduccion</class>
+  <method>add</method>
+  <thread>21</thread>
+  <message>Error al intentar convertir patron sobre No del grupo.mp4</message>
+</record>

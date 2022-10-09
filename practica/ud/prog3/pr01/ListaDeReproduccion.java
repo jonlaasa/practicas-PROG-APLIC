@@ -197,9 +197,14 @@ public class ListaDeReproduccion implements ListModel<String> {
 		int numero = (int) (Math.random() *(ficherosLista.size()));
 		
 		if (numero >0 & numero <=ficherosLista.size()) {
+			ficheroEnCurso = numero;
 			return true;
 		}
-		return false;
+		else {
+			ficheroEnCurso=-1;
+			return false;
+		}
+		
 	}
 
 	/** Devuelve el fichero seleccionado de la lista

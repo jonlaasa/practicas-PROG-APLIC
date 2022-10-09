@@ -6,6 +6,10 @@ import java.awt.event.*;
 import javax.swing.*;
 
 import java.io.File;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import uk.co.caprica.vlcj.factory.discovery.NativeDiscovery;
 import uk.co.caprica.vlcj.player.base.MediaPlayer;
@@ -20,6 +24,8 @@ import uk.co.caprica.vlcj.player.component.EmbeddedMediaPlayerComponent;
  */
 public class VideoPlayer extends JFrame {
 	private static final long serialVersionUID = 1L;
+	
+	DateFormat df = new SimpleDateFormat("d/M/y h:m");
 	
 	// Varible de ventana principal de la clase
 	private static VideoPlayer miVentana;
@@ -91,16 +97,28 @@ public class VideoPlayer extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				paraVideo();
-				listaRepVideos.irAAnterior();
-				lanzaVideo();
+				if (cbAleatorio.isSelected()) {
+					listaRepVideos.irARandom();
+					lanzaVideo();
+				}
+				else {
+					listaRepVideos.irAAnterior();
+					lanzaVideo();
+				}
 			}
 		});
 		bAdelante.addActionListener( new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				paraVideo();
-				listaRepVideos.irASiguiente();
-				lanzaVideo();
+				if (cbAleatorio.isSelected()) {
+					listaRepVideos.irARandom();
+					lanzaVideo();
+				}
+				else {
+					listaRepVideos.irASiguiente();
+					lanzaVideo();
+				}
 			}
 		});
 		bPausaPlay.addActionListener( new ActionListener() {
@@ -108,8 +126,9 @@ public class VideoPlayer extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				if (mediaPlayerComponent.mediaPlayer().status().isPlayable()) {
 					if (mediaPlayerComponent.mediaPlayer().status().isPlaying()) {
-						// TODO: hacer pausa
+						mediaPlayerComponent.mediaPlayer().controls().pause();
 					} else {
+						mediaPlayerComponent.mediaPlayer().controls().play();
 						// TODO: hacer play
 					}
 				} else {
@@ -168,6 +187,10 @@ public class VideoPlayer extends JFrame {
 
 	// Empieza a reproducir el vídeo en curso de la lista de reproducción
 	private void lanzaVideo() {
+		int cual = listaRepVideos.getFicSeleccionado();
+		File ficheroAct = listaRepVideos.getFic(cual);
+		String convert = df.format(ficheroAct.lastModified());
+		lMensaje.setText(convert);
 		if (mediaPlayerComponent.mediaPlayer()!=null &&
 			listaRepVideos.getFicSeleccionado()!=-1) {
 			File ficVideo = listaRepVideos.getFic(listaRepVideos.getFicSeleccionado());
@@ -196,7 +219,7 @@ public class VideoPlayer extends JFrame {
 	 */
 	public static void main(String[] args) {
 		// Para probar carga interactiva descomentar o comentar la línea siguiente:
-		args = new String[] { "*Pentatonix*.mp4", "test/res/" };
+		args = new String[] { "*Pentatonix*.mp4", "videos/res/" };
 		if (args.length < 2) {
 			// No hay argumentos: selección manual
 			File fPath = pedirCarpeta();
@@ -230,7 +253,7 @@ public class VideoPlayer extends JFrame {
 			public void run() {
 				miVentana = new VideoPlayer();
 				// Descomentar esta línea y poner una ruta válida para ver un vídeo de ejemplo
-				miVentana.listaRepVideos.ficherosLista.add( new File("E:/media/videos/Música/Official_Video_Daft_Punk_-_Pentatonix.mp4") );				
+				miVentana.listaRepVideos.ficherosLista.add( new File("videos/res/[Official Video] Daft Punk - Pentatonix.mp4") );				
 				miVentana.setVisible( true );
 				miVentana.listaRepVideos.add( path, ficheros );
 				miVentana.listaRepVideos.irAPrimero();
